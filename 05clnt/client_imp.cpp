@@ -86,7 +86,7 @@ int bdev_config_params::init_parse(int version, const char* const argv[], int ar
 	n_args_read += sscanf(argv[1], "%c", &c); type = (bdev_config_params::bdev_type)c;
 	n_args_read += sscanf(argv[2], "%c", &c); how = (bdev_config_params::connect_how)c;
 	n_args_read += sscanf(argv[3], "%c", &c); is_direct_io = (bool)((c == 'D')||(c == 'd'));
-	n_args_read += sscanf(argv[4], "%64s", conn.any);
+	n_args_read += sscanf(argv[4], "%63s", conn.any);	// %63s: leave room for the NUL terminator in conn.any[64] (was %64s -> 65-byte write)
 	n_args_read += sscanf(argv[5], "%15s", security_cookie);
 	// pr_verb1("+Dev: uuid=%s|%c|%c|%u|con=%s\n", id.uuid, type, how, is_direct_io, conn.any);
 	if (n_args_read != argc) return -__LINE__;
