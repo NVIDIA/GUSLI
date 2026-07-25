@@ -1,0 +1,16 @@
+version: "1.0"
+project: gusli
+last_updated: "2026-07-24T20:13:28Z"
+repository_exposure_classification:
+  visibility: "Internal"
+  basis: "Hosted on gitlab-master.nvidia.com as scratch for GitLab visibility 'External'; Apache-2.0, NVIDIA copyright. Public/external hosting: git@github.com:nvidia/gusli.git"
+  confirmed_by: "danielhe@nvidia.com, Daniel Herman-Shmulyan"
+  date: "2026-07-24"
+service_exposure_classification:
+  tier: "Internal-Isolated"
+  confidence: "high"
+  basis: "Documented model is two cooperating user-space processes on a single host communicating over a Unix domain socket and a shared-memory I/O ring (01common/dp_io_ring.hpp, 00utils/utils.cpp); no external network listener in the default local configuration. Confidence is medium because the socket layer also implements optional TCP/UDP transports that could expose the server beyond the host in non-default deployments."
+  confirmed_by: "danielhe@nvidia.com, Daniel Herman-Shmulyan."
+  date: "2026-07-24"
+false_positives: []
+accepted_risks: []

@@ -145,6 +145,9 @@ The current Maintainers Group for the project consists of:
     - User can monitor the IO and call cancel, but this does not guarantee io finish, much like stuck io to a local disk.
     - Control path operations (open/close bdev, etc) have no timeout and cannot be canceled. They are typically fast.
 6. **IO throttling**. Done by the client on the amount of in air IO requests min(client_limit, server_limit). But does not take into account the size of the request nor how many ranges it has.
+7. **Security issues**.
+    - See [Security model and open issues, AI generated](./SECURITY.md)
+    - See [AI agent security triage instruction](.security-triage.yaml)
 
 ### Version release checklist
 1. Run Correctness tests (pass the following tests): `./unitest/run ci`;
