@@ -126,7 +126,7 @@ class io_request_executor_base : no_implicit_constructors {
 	}
 
 	virtual int run(void) = 0;								// Start IO execution, Return -1 if constructor had failure. Otherwise return 0;
-	virtual enum io_request::cancel_rv cancel(void) {		// Assume IO calls cancel() or detach_io() exactly once, no concurency here
+	virtual enum io_request::cancel_rv cancel(void) {		// Assume IO calls cancel() or detach_io() exactly once, no concurrency here
 		io_request::cancel_rv rv;
 		cmp.lock.lock();									// Multiple cancel calls??? protect with atomic compare exchange
 		if (cmp.was_canceled) {
@@ -316,7 +316,7 @@ class wrap_remote_io_exec_async : public io_request_executor_base {
 };
 
 /*****************************************************************************/
-// Executor for testing. Finishes IO only after it is explicitly canceled by user, effectively makeing IO stuck forever until canceled.
+// Executor for testing. Finishes IO only after it is explicitly canceled by user, effectively making IO stuck forever until canceled.
 class never_reply_executor : public io_request_executor_base {
  public:
 	never_reply_executor(in_air_ios_holder &_ina, io_request_base &_io) : io_request_executor_base(_ina, _io, true) {}

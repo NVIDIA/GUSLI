@@ -596,7 +596,7 @@ uint32_t global_clnt_context::bdev_ctl_get_num_in_air_ios(const backend_bdev_id&
 		* It will definitely call get_error() at least once
 		* Calling cancel make no sense from callback but user can do this (will get io already done as reply).
 	* Incoming io completions from Server
-		* With server backend - completion ring wakes up and calls client_receive_server_finish_io(), race with cancel ans stop all io's
+		* With server backend - completion ring wakes up and calls client_receive_server_finish_io(), race with cancel and stop all io's
 		* IO executor ris responsible for managing executor completions separately from user requests (like cancel / io poling)
 	* Stop all ios (Server disconnect and reconnect)
 		* Generate internal cancellation. Behaves like user requested cancel but on all ios.
@@ -610,7 +610,7 @@ uint32_t global_clnt_context::bdev_ctl_get_num_in_air_ios(const backend_bdev_id&
 		* Poll the same io status from a different thread. done() will be called while another thread does polling
 		* Another thread may run { cancel() / done() } / stop all io and have a race of which thread call done()
 	* Polling IO from 1 thread in parallel to callback arriving on another thread.
-		* Inherent race condition: seting io rv and issuing callback. GUSLI assumes that polling is potentially done so once
+		* Inherent race condition: setting io rv and issuing callback. GUSLI assumes that polling is potentially done so once
 			rv of io is set, immediately done() can be called and io can be free() from the polling thread.
 	* Calling done() and freeing the io too early with async io. A callback of completion may arrive before submit_io() finished
 		It is not advisable to free the io before user submission finished as even harmless prints ("submitted successfully")

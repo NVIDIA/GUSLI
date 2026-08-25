@@ -44,7 +44,7 @@ fi;
 # Step 3.0: Install generic stuff
 apt-get update; apt-get install -y libgflags-dev meson autoconf libtool gdb htop libgtest-dev liburing-dev libaio-dev clangd tree xxd sudo;
 
-# Step 3.1: Install latests gusli lib
+# Step 3.1: Install latest gusli lib
 cd /home/danielhe/projects/nixl;
 if false; then								# Debugging / Developing GUSLI-NIXL integration
 	rm -rf ./gusli; cp -r ../gusli .;		# Copy local dev version

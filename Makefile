@@ -78,7 +78,7 @@ OBJECTS_SPDK_BOTH_APP = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES_SPDK_BOTH_AP
 OBJECTS_SPDK_SRVR_APP = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES_SPDK_SRVR_APP))
 OBJECTS_ALL = $(OBJECTS_BASE) $(OBJECTS_CLNT) $(OBJECTS_SRVR) $(OBJECTS_TEST_CLNT) $(OBJECTS_SPDK_BOTH_APP) $(OBJECTS_SPDK_SRVR_APP)
 
-# Include dependency files if they exist, causes recompilation .cpp files when .hpp files cahnge
+# Include dependency files if they exist, causes recompilation .cpp files when .hpp files change
 DEPEND_FILES_ALL = $(OBJECTS_ALL:.o=.d)
 DFLAGS = -MP -MMD
 
@@ -312,7 +312,7 @@ install: $(OBJ_DIR)/$(LIB_CLNT_NAME).so $(OBJ_DIR)/$(LIB_SRVR_NAME).so gusli_cli
 #	ldconfig
 
 uninstall:
-	@printf "+-->Unistall from |\e[1;45m$(INSTALL_DIR)\e[0;0m|\n"
+	@printf "+-->Uninstall from |\e[1;45m$(INSTALL_DIR)\e[0;0m|\n"
 	@rm -f $(INSTALL_DIR)/lib/lib$(PROJECT_PREFIX)_*
 	@rm -f $(INSTALL_DIR)/lib/$(PROJECT_PREFIX)_*
 	@rm -f $(INSTALL_DIR)/include/$(PROJECT_PREFIX)_*

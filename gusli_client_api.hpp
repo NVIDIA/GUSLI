@@ -29,7 +29,7 @@ namespace gusli {
 /***************************** block device configuration ********************/
 // Note: Library does not manage local block devices, it assumes they exist and library can connect to them. Like local disks
 struct backend_bdev_id {					// Unique ID of volume / block device / disk
-	char uuid[16];							// Deliberatly no dependency on uuid.lib
+	char uuid[16];							// Deliberately no dependency on uuid.lib
 	friend bool operator==(const backend_bdev_id& a, const backend_bdev_id& b) noexcept {
 		return (memcmp(a.uuid, b.uuid, sizeof(a.uuid)) == 0);
 	}
@@ -67,7 +67,7 @@ struct bdev_config_params {
 	enum connect_how { SHARED_RW = 'W', READ_ONLY = 'R', EXCLUSIVE_RW = 'X'} how;	// Access permissions for block device
 	bool is_direct_io;								// Attempt for direct io if possible (avoid page cache)
 	union connection_addr_t {						// Path/address of server/block-device. Kernel block device (like /dev/nvme0n2), Local file path (like: /tmp/my_file.txt)
-		char any[64];								// Remote server addres: uds/udp/tcp socket. like: /tmp/gs_uds", "t127.0.0.2" /*tcp*/, "u127.0.0.1" /*udp*/
+		char any[64];								// Remote server address: uds/udp/tcp socket. like: /tmp/gs_uds", "t127.0.0.2" /*tcp*/, "u127.0.0.1" /*udp*/
 	} conn;
 	char security_cookie[16];						// 16[bytes] Utf-8 string, Used for handshake with server, to verify library is authorized to access this bdev
 	bdev_config_params() { memset(this, 0, sizeof(*this)); }

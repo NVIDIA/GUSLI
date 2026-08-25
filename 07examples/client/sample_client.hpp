@@ -82,7 +82,7 @@ int client_test_write_read_verify_multi(const gusli::bdev_info& info, const std:
 	return 0;
 }
 
-/* Simple test of clinet process: Connect to server, Write IO and verify it
+/* Simple test of client process: Connect to server, Write IO and verify it
    with read. Do 1 range and multi-range io. Stop the server at the end */
 int client_simple_test_of_server(const char* clnt_name, const int n_devs, const char* const bdev_uuid[], const char* const srvr_addr[]) {
 	gusli::global_clnt_context::init_params p;
